@@ -1,77 +1,85 @@
 package com.hospital.medicos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "bloqueos_horario")
 public class BloqueoHorario {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  public Long getId() {
+    return id;
+  }
 
-    @NotNull(message = "El médico es obligatorio")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico_id", nullable = false)
-    @JsonIgnoreProperties({"especialidades", "hibernateLazyInitializer", "handler"})
-    private Medico medico;
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @NotNull(message = "La fecha es obligatoria")
-    @Column(nullable = false)
-    private LocalDate fecha;
+  @ManyToOne(optional = false)
+  private Medico medico;
 
-    @NotNull(message = "La hora de inicio es obligatoria")
-    @Column(nullable = false)
-    private LocalTime horaInicio;
+  public Medico getMedico() {
+    return medico;
+  }
 
-    @NotNull(message = "La hora de fin es obligatoria")
-    @Column(nullable = false)
-    private LocalTime horaFin;
+  public void setMedico(Medico value) {
+    this.medico = value;
+  }
 
-    @NotBlank(message = "El motivo es obligatorio")
-    @Column(nullable = false, length = 255)
-    private String motivo;
+  @Column(nullable = false)
+  private java.time.LocalDate fecha;
 
-    @Column(nullable = false, length = 20)
-    private String estado = "BLOQUEADO"; // BLOQUEADO / CANCELADO
+  public java.time.LocalDate getFecha() {
+    return fecha;
+  }
 
-    public BloqueoHorario() {}
+  public void setFecha(java.time.LocalDate value) {
+    this.fecha = value;
+  }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+  @Column(nullable = false)
+  private java.time.LocalTime horaInicio;
 
-    public Medico getMedico() { return medico; }
-    public void setMedico(Medico medico) { this.medico = medico; }
+  public java.time.LocalTime getHoraInicio() {
+    return horaInicio;
+  }
 
-    public LocalDate getFecha() { return fecha; }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+  public void setHoraInicio(java.time.LocalTime value) {
+    this.horaInicio = value;
+  }
 
-    public LocalTime getHoraInicio() { return horaInicio; }
-    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
+  @Column(nullable = false)
+  private java.time.LocalTime horaFin;
 
-    public LocalTime getHoraFin() { return horaFin; }
-    public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
+  public java.time.LocalTime getHoraFin() {
+    return horaFin;
+  }
 
-    public String getMotivo() { return motivo; }
-    public void setMotivo(String motivo) { this.motivo = motivo; }
+  public void setHoraFin(java.time.LocalTime value) {
+    this.horaFin = value;
+  }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+  @Column(nullable = false, length = 255)
+  private String motivo;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BloqueoHorario)) return false;
-        BloqueoHorario that = (BloqueoHorario) o;
-        return id != null && id.equals(that.id);
-    }
+  public String getMotivo() {
+    return motivo;
+  }
 
-    @Override
-    public int hashCode() { return Objects.hash(id); }
+  public void setMotivo(String value) {
+    this.motivo = value;
+  }
+
+  @Column(nullable = false, length = 20)
+  private String estado;
+
+  public String getEstado() {
+    return estado;
+  }
+
+  public void setEstado(String value) {
+    this.estado = value;
+  }
 }

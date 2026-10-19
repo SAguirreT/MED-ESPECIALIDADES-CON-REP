@@ -1,0 +1,224 @@
+{
+  "baseUrl": "http://127.0.0.1:8086",
+  "passed": 43,
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/auth/signin",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signin",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signin",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/test/all",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/test/user",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/test/user",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/test/user",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/test/admin",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/test/admin",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/test/mod",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/especialidades",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/especialidades",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/consultorios",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/medicos",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/medicos",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/pacientes",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/horarios/medico/6",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/horarios/medico/6",
+      "status": 409
+    },
+    {
+      "method": "PUT",
+      "path": "/horarios/30",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/disponibilidad/medico/6?fecha=2026-10-22",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/citas",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/citas",
+      "status": 409
+    },
+    {
+      "method": "PATCH",
+      "path": "/citas/20/atender",
+      "status": 409
+    },
+    {
+      "method": "PATCH",
+      "path": "/medicos/6/estado?estado=false",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/horarios/medico/6/bloqueos",
+      "status": 409
+    },
+    {
+      "method": "PUT",
+      "path": "/citas/20",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/citas/20/cancelar",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/horarios/medico/6/bloqueos",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/disponibilidad/medico/6?fecha=2026-10-22",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/bloqueos/2/cancelar",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/vacaciones",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/disponibilidad/medico/6?fecha=2026-10-22",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/vacaciones/2/cancelar",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/disponibilidad/medico/6?fecha=2026-10-22",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/horarios/30/estado?estado=false",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/medicos/6/estado?estado=false",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/pacientes/10/estado?estado=false",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/especialidades/6/estado?estado=false",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/consultorios/6/estado?estado=false",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/auditoria?size=100&tabla=citas",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/reportes/medicos-por-especialidad",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard",
+      "status": 200
+    }
+  ],
+  "patientId": 10,
+  "appointmentId": 20,
+  "note": "QA records retained inactive; appointment cancelled. No credentials or tokens in this report."
+}

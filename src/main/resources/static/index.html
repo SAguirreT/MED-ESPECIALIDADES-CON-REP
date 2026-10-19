@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#123c39" />
+    <title>Aurora · Gestión clínica</title>
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <div id="login-view" class="login-layout">
+      <section class="login-story">
+        <a class="brand" href="/"
+          ><span class="brand-mark">✳</span> aurora<span class="brand-small"
+            >CLÍNICA</span
+          ></a
+        >
+        <div class="story-content">
+          <span class="eyebrow">CUIDAMOS CADA ENCUENTRO</span>
+          <h1>Más cerca de<br />una atención<br /><em>bien organizada.</em></h1>
+          <p>
+            Pacientes, profesionales y agenda.<br />Todo conectado en un mismo
+            lugar.
+          </p>
+          <div class="story-card">
+            <span class="round-icon">＋</span>
+            <div>
+              <strong>Tiempo para cuidar</strong>
+              <p>Una agenda clara. Un equipo conectado.</p>
+            </div>
+            <span class="spark">✦</span>
+          </div>
+        </div>
+        <footer>Sistema de gestión ambulatoria <span>Lima, Perú</span></footer>
+      </section>
+      <section class="login-form-area">
+        <span class="pill">PORTAL DEL EQUIPO</span>
+        <h2 id="login-title">Te damos la bienvenida</h2>
+        <p id="login-description" class="muted">
+          Ingresa a tu espacio de trabajo.
+        </p>
+        <form id="login-form">
+          <label id="signup-name-label" hidden
+            >Nombre de usuario<input
+              name="username"
+              autocomplete="username"
+              minlength="3"
+              maxlength="60" /></label
+          ><label
+            >Correo electrónico<input
+              name="email"
+              type="email"
+              placeholder="nombre@clinica.com"
+              autocomplete="email"
+              required
+              maxlength="100" /></label
+          ><label
+            >Contraseña<input
+              name="password"
+              type="password"
+              placeholder="Tu contraseña"
+              autocomplete="current-password"
+              required
+              maxlength="64"
+          /></label>
+          <p id="login-error" class="form-error" role="alert"></p>
+          <button class="primary wide" type="submit" id="login-submit">
+            Ingresar al portal <span>→</span>
+          </button>
+        </form>
+        <button id="signup-toggle" class="text-button">
+          Crear una cuenta de consulta
+        </button>
+        <div id="demo-access" class="demo-access" hidden>
+          <strong>Explora la demostración</strong>
+          <p>Datos ficticios para la exposición académica.</p>
+          <div class="demo-buttons">
+            <button data-demo="admin">Administración</button
+            ><button data-demo="recepcion">Recepción</button
+            ><button data-demo="consulta">Consulta</button>
+          </div>
+        </div>
+        <p class="login-foot">Acceso personal · Permisos según tu rol</p>
+      </section>
+    </div>
+    <div id="app-view" class="app-layout" hidden>
+      <aside id="sidebar">
+        <a class="brand" href="#inicio"
+          ><span class="brand-mark">✳</span> aurora<span class="brand-small"
+            >CLÍNICA</span
+          ></a
+        >
+        <p class="nav-caption">ESPACIO DE TRABAJO</p>
+        <nav id="navigation" aria-label="Navegación principal"></nav>
+        <div class="sidebar-bottom">
+          <div class="status-dot"></div>
+          <span>Atención conectada<small>Gestión ambulatoria</small></span>
+        </div>
+      </aside>
+      <div class="workspace">
+        <header class="topbar">
+          <button
+            id="menu-toggle"
+            class="icon-button mobile-only"
+            aria-label="Abrir menú"
+          >
+            ☰
+          </button>
+          <div class="breadcrumb">
+            Mi clínica <span>/</span> <strong id="crumb">Resumen</strong>
+          </div>
+          <div class="topbar-right">
+            <span id="demo-badge" class="pill" hidden>DEMOSTRACIÓN</span
+            ><span id="today-label"></span
+            ><button id="profile-button" class="profile">
+              <span class="avatar" id="user-initials"></span
+              ><span
+                ><strong id="user-name"></strong
+                ><small id="user-role"></small></span
+              ><span>⌄</span>
+            </button>
+          </div>
+        </header>
+        <main id="content" tabindex="-1"></main>
+        <footer class="app-footer">
+          <span>Aurora · Gestión clínica</span
+          ><span
+            >Zona horaria America/Lima ·
+            <span id="connection-state">Conectado</span></span
+          >
+        </footer>
+      </div>
+    </div>
+    <dialog id="editor">
+      <form id="editor-form">
+        <div class="dialog-header">
+          <div>
+            <span class="eyebrow">GESTIÓN CLÍNICA</span>
+            <h2 id="editor-title"></h2>
+          </div>
+          <button
+            type="button"
+            id="close-editor"
+            class="icon-button"
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+        </div>
+        <div id="editor-fields" class="form-grid"></div>
+        <p id="editor-error" class="form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" id="cancel-editor" class="secondary">
+            Cancelar</button
+          ><button type="submit" class="primary" id="save-editor">
+            Guardar cambios
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </body>
+</html>

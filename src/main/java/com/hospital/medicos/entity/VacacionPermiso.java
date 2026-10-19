@@ -1,61 +1,74 @@
 package com.hospital.medicos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(name = "vacaciones_permisos")
 public class VacacionPermiso {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  public Long getId() {
+    return id;
+  }
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico_id", nullable = false)
-    @JsonIgnoreProperties({"especialidades", "hibernateLazyInitializer", "handler"})
-    private Medico medico;
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate fechaInicio;
+  @ManyToOne(optional = false)
+  private Medico medico;
 
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate fechaFin;
+  public Medico getMedico() {
+    return medico;
+  }
 
-    @Column(length = 255)
-    private String motivo;
+  public void setMedico(Medico value) {
+    this.medico = value;
+  }
 
-    @Column(nullable = false, length = 20)
-    private String estado = "NO_DISPONIBLE";
+  @Column(nullable = false)
+  private java.time.LocalDate fechaInicio;
 
-    public VacacionPermiso() {}
+  public java.time.LocalDate getFechaInicio() {
+    return fechaInicio;
+  }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public Medico getMedico() { return medico; }
-    public void setMedico(Medico medico) { this.medico = medico; }
-    public LocalDate getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
-    public LocalDate getFechaFin() { return fechaFin; }
-    public void setFechaFin(LocalDate fechaFin) { this.fechaFin = fechaFin; }
-    public String getMotivo() { return motivo; }
-    public void setMotivo(String motivo) { this.motivo = motivo; }
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+  public void setFechaInicio(java.time.LocalDate value) {
+    this.fechaInicio = value;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof VacacionPermiso)) return false;
-        return id != null && id.equals(((VacacionPermiso) o).id);
-    }
+  @Column(nullable = false)
+  private java.time.LocalDate fechaFin;
 
-    @Override
-    public int hashCode() { return Objects.hash(id); }
+  public java.time.LocalDate getFechaFin() {
+    return fechaFin;
+  }
+
+  public void setFechaFin(java.time.LocalDate value) {
+    this.fechaFin = value;
+  }
+
+  @Column(nullable = false, length = 255)
+  private String motivo;
+
+  public String getMotivo() {
+    return motivo;
+  }
+
+  public void setMotivo(String value) {
+    this.motivo = value;
+  }
+
+  @Column(nullable = false, length = 20)
+  private String estado;
+
+  public String getEstado() {
+    return estado;
+  }
+
+  public void setEstado(String value) {
+    this.estado = value;
+  }
 }
