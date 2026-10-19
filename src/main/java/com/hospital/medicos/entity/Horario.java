@@ -1,83 +1,96 @@
 package com.hospital.medicos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "horarios")
 public class Horario {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "consultorio_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Consultorio consultorio; // RF-MED-16, opcional al crear el horario
+  public Long getId() {
+    return id;
+  }
 
-    public Consultorio getConsultorio() { return consultorio; }
-    public void setConsultorio(Consultorio consultorio) { this.consultorio = consultorio; }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @NotNull(message = "El médico es obligatorio")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico_id", nullable = false)
-    @JsonIgnoreProperties({"especialidades", "hibernateLazyInitializer", "handler"})
-    private Medico medico;
+  @ManyToOne(optional = false)
+  private Medico medico;
 
-    @NotNull(message = "El día de la semana es obligatorio")
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 15)
-    private DiaSemana diaSemana;
+  public Medico getMedico() {
+    return medico;
+  }
 
-    @NotNull(message = "La hora de inicio es obligatoria")
-    @Column(nullable = false)
-    private LocalTime horaInicio;
+  public void setMedico(Medico value) {
+    this.medico = value;
+  }
 
-    @NotNull(message = "La hora de fin es obligatoria")
-    @Column(nullable = false)
-    private LocalTime horaFin;
+  @ManyToOne private Consultorio consultorio;
 
-    @NotNull(message = "La duración de la cita es obligatoria")
-    @Column(nullable = false)
-    private Integer duracionCitaMinutos; // ej. 30
+  public Consultorio getConsultorio() {
+    return consultorio;
+  }
 
-    @Column(nullable = false)
-    private Boolean estado = true; // activo/inactivo
+  public void setConsultorio(Consultorio value) {
+    this.consultorio = value;
+  }
 
-    public Horario() {}
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private DiaSemana diaSemana;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+  public DiaSemana getDiaSemana() {
+    return diaSemana;
+  }
 
-    public Medico getMedico() { return medico; }
-    public void setMedico(Medico medico) { this.medico = medico; }
+  public void setDiaSemana(DiaSemana value) {
+    this.diaSemana = value;
+  }
 
-    public DiaSemana getDiaSemana() { return diaSemana; }
-    public void setDiaSemana(DiaSemana diaSemana) { this.diaSemana = diaSemana; }
+  @Column(nullable = false)
+  private java.time.LocalTime horaInicio;
 
-    public LocalTime getHoraInicio() { return horaInicio; }
-    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
+  public java.time.LocalTime getHoraInicio() {
+    return horaInicio;
+  }
 
-    public LocalTime getHoraFin() { return horaFin; }
-    public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
+  public void setHoraInicio(java.time.LocalTime value) {
+    this.horaInicio = value;
+  }
 
-    public Integer getDuracionCitaMinutos() { return duracionCitaMinutos; }
-    public void setDuracionCitaMinutos(Integer duracionCitaMinutos) { this.duracionCitaMinutos = duracionCitaMinutos; }
+  @Column(nullable = false)
+  private java.time.LocalTime horaFin;
 
-    public Boolean getEstado() { return estado; }
-    public void setEstado(Boolean estado) { this.estado = estado; }
+  public java.time.LocalTime getHoraFin() {
+    return horaFin;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Horario)) return false;
-        Horario horario = (Horario) o;
-        return id != null && id.equals(horario.id);
-    }
+  public void setHoraFin(java.time.LocalTime value) {
+    this.horaFin = value;
+  }
 
-    @Override
-    public int hashCode() { return Objects.hash(id); }
+  @Column(nullable = false)
+  private Integer duracionCitaMinutos;
+
+  public Integer getDuracionCitaMinutos() {
+    return duracionCitaMinutos;
+  }
+
+  public void setDuracionCitaMinutos(Integer value) {
+    this.duracionCitaMinutos = value;
+  }
+
+  @Column(nullable = false)
+  private Boolean estado = true;
+
+  public Boolean getEstado() {
+    return estado;
+  }
+
+  public void setEstado(Boolean value) {
+    this.estado = value;
+  }
 }

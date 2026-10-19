@@ -1,62 +1,74 @@
 package com.hospital.medicos.entity;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "consultorios")
 public class Consultorio {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  public Long getId() {
+    return id;
+  }
 
-    @NotBlank(message = "El código es obligatorio")
-    @Column(nullable = false, length = 20, unique = true)
-    private String codigo; // ej. C-205
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @NotBlank(message = "El nombre es obligatorio")
-    @Column(nullable = false, length = 100)
-    private String nombre;
+  @Column(nullable = false, unique = true, length = 20)
+  private String codigo;
 
-    @Column(length = 20)
-    private String piso;
+  public String getCodigo() {
+    return codigo;
+  }
 
-    @Column(length = 100)
-    private String area;
+  public void setCodigo(String value) {
+    this.codigo = value;
+  }
 
-    @Column(nullable = false, length = 20)
-    private String estado = "DISPONIBLE"; // DISPONIBLE / OCUPADO / INACTIVO
+  @Column(nullable = false, length = 100)
+  private String nombre;
 
-    public Consultorio() {}
+  public String getNombre() {
+    return nombre;
+  }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+  public void setNombre(String value) {
+    this.nombre = value;
+  }
 
-    public String getCodigo() { return codigo; }
-    public void setCodigo(String codigo) { this.codigo = codigo; }
+  @Column(length = 20)
+  private String piso;
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+  public String getPiso() {
+    return piso;
+  }
 
-    public String getPiso() { return piso; }
-    public void setPiso(String piso) { this.piso = piso; }
+  public void setPiso(String value) {
+    this.piso = value;
+  }
 
-    public String getArea() { return area; }
-    public void setArea(String area) { this.area = area; }
+  @Column(length = 100)
+  private String area;
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+  public String getArea() {
+    return area;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Consultorio)) return false;
-        Consultorio that = (Consultorio) o;
-        return id != null && id.equals(that.id);
-    }
+  public void setArea(String value) {
+    this.area = value;
+  }
 
-    @Override
-    public int hashCode() { return Objects.hash(id); }
+  @Column(nullable = false, length = 20)
+  private String estado;
+
+  public String getEstado() {
+    return estado;
+  }
+
+  public void setEstado(String value) {
+    this.estado = value;
+  }
 }

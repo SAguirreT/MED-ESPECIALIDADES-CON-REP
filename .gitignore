@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local runtime and credentials
+data/
+.env
+*.log
+.review-m2/

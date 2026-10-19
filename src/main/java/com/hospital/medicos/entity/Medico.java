@@ -1,90 +1,101 @@
 package com.hospital.medicos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "medicos")
 public class Medico {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  public Long getId() {
+    return id;
+  }
 
-    @NotBlank(message = "El nombre es obligatorio")
-    @Column(nullable = false, length = 100)
-    private String nombre;
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @NotBlank(message = "El apellido es obligatorio")
-    @Column(nullable = false, length = 100)
-    private String apellido;
+  @Column(nullable = false, length = 100)
+  private String nombre;
 
-    @NotBlank(message = "El CMP es obligatorio")
-    @Column(nullable = false, length = 20, unique = true)
-    private String cmp;
+  public String getNombre() {
+    return nombre;
+  }
 
-    @Column(length = 15)
-    private String telefono;
+  public void setNombre(String value) {
+    this.nombre = value;
+  }
 
-    @Email(message = "El correo no tiene un formato válido")
-    @Column(length = 100)
-    private String email;
+  @Column(nullable = false, length = 100)
+  private String apellido;
 
-    @Column(nullable = false)
-    private Boolean estado = true; // RF-MED-04
+  public String getApellido() {
+    return apellido;
+  }
 
-    // RF-MED-06: Mapeo de Relación @ManyToMany
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "medico_especialidad",
-            joinColumns = @JoinColumn(name = "medico_id"),
-            inverseJoinColumns = @JoinColumn(name = "especialidad_id")
-    )
-    @JsonIgnoreProperties("medicos")
-    private List<Especialidad> especialidades = new ArrayList<>();
+  public void setApellido(String value) {
+    this.apellido = value;
+  }
 
-    public Medico() {}
+  @Column(nullable = false, unique = true, length = 20)
+  private String cmp;
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+  public String getCmp() {
+    return cmp;
+  }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+  public void setCmp(String value) {
+    this.cmp = value;
+  }
 
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
+  @Column(length = 20)
+  private String telefono;
 
-    public String getCmp() { return cmp; }
-    public void setCmp(String cmp) { this.cmp = cmp; }
+  public String getTelefono() {
+    return telefono;
+  }
 
-    public String getTelefono() { return telefono; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
+  public void setTelefono(String value) {
+    this.telefono = value;
+  }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+  @Column(length = 100)
+  private String email;
 
-    public Boolean getEstado() { return estado; }
-    public void setEstado(Boolean estado) { this.estado = estado; }
+  public String getEmail() {
+    return email;
+  }
 
-    public List<Especialidad> getEspecialidades() { return especialidades; }
-    public void setEspecialidades(List<Especialidad> especialidades) { this.especialidades = especialidades; }
+  public void setEmail(String value) {
+    this.email = value;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Medico)) return false;
-        Medico medico = (Medico) o;
-        return id != null && id.equals(medico.id);
-    }
+  @Column(nullable = false)
+  private Boolean estado = true;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+  public Boolean getEstado() {
+    return estado;
+  }
+
+  public void setEstado(Boolean value) {
+    this.estado = value;
+  }
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "medico_especialidad",
+      joinColumns = @JoinColumn(name = "medico_id"),
+      inverseJoinColumns = @JoinColumn(name = "especialidad_id"),
+      uniqueConstraints = @UniqueConstraint(columnNames = {"medico_id", "especialidad_id"}))
+  private java.util.List<Especialidad> especialidades = new java.util.ArrayList<>();
+
+  public java.util.List<Especialidad> getEspecialidades() {
+    return especialidades;
+  }
+
+  public void setEspecialidades(java.util.List<Especialidad> value) {
+    this.especialidades = value;
+  }
 }
